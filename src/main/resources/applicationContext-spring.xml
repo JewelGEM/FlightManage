@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+    <!--自动扫描：扫描指定包下所有注解-->
+    <context:component-scan base-package="com.cc" />
+
+    <!--引入数据源db.properties-->
+    <context:property-placeholder location="classpath:db.properties,classpath:redis.properties" ></context:property-placeholder>
+
+
+
+    <!--配置数据源：C3P0-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driverClass}"></property>
+        <property name="jdbcUrl" value="${jdbcurl}"></property>
+        <property name="user" value="${uname}"></property>
+        <property name="password" value="${upwd}"></property>
+        <property name="initialPoolSize" value="${initialPoolSize}"></property>
+        <property name="maxPoolSize" value="${maxPoolSize}"></property>
+    </bean>
+
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory"   class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--引入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--加载mapper映射文件-->
+        <property name="mapperLocations" value="classpath:com/cc/mapping/*.xml"></property>
+        <!--为实体类起别名-->
+        <property name="typeAliasesPackage" value="com.cc.pojo"></property>
+        <!--加载mybatis-config.xml-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+    </bean>
+
+    <!--配置sqlSessionFactory,能让dao直接使用-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cc.dao"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!--事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--redis配置-->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="${redis.hostName}"></constructor-arg>
+        <constructor-arg name="port" value="${redis.port}"></constructor-arg>
+    </bean>
+
+    <!--配置RedisCache类对象-->
+    <bean id="redisCache" class="com.cc.redis.RedisCache">
+        <property name="jedisPool" ref="jedisPool"></property>
+    </bean>
+
+
+</beans>

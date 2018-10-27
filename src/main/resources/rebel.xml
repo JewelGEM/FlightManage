@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  This is the JRebel configuration file. It maps the running application to your IDE workspace, enabling JRebel reloading for this project.
+  Refer to https://manuals.zeroturnaround.com/jrebel/standalone/config.html for more information.
+-->
+<application>
+
+	<classpath>
+		<dir name="D:/workspace/idea/FlightManage/target/classes">
+		</dir>
+	</classpath>
+
+	<web>
+		<link target="/">
+			<dir name="D:/workspace/idea/FlightManage/src/main/webapp">
+			</dir>
+		</link>
+	</web>
+
+</application>
