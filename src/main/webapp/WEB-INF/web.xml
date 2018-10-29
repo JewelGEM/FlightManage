@@ -7,13 +7,29 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
 
   <display-name>Archetype Created Web Application</display-name>
-  
-  
-  <!--加载applicationContext.xml-->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext-*.xml</param-value>
-  </context-param>
+
+  <!-- Shiro的filter -->
+  <!-- shiro过虑器，DelegatingFilterProx会从spring容器中找shiroFilter -->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <!-- 设置true由servlet容器控制filter的生命周期 -->
+    <init-param>
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+     <!--设置spring容器filter的beanID，如果不设置则默认自动找与filter name一致的bean，指定更加稳定快速-->
+    <init-param>
+      <param-name>targetBeanName</param-name>
+      <param-value>shiroFilter</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
 
   <!--编码配置-->
   <filter>
@@ -32,7 +48,13 @@
     <filter-name>characterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
+
+
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext-*.xml</param-value>
+  </context-param>
   
   <!--配置spring监听，完成类的初始化-->
   <listener>
@@ -49,13 +71,13 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <!--让Spring MVC的前端控制器拦截所有请求-->
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
-  
+
+
   
 
 </web-app>

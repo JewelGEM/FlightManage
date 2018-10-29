@@ -14,20 +14,16 @@
 <script type="text/javascript">
 $(function(){
 	$("#login").click(function(){
-	    window.location.href="Flight/index.jsp";
+	    // window.location.href="Flight/index.jsp";
 
-		// $.ajax({
-		// 	type:'post',
-		// 	url:'LoginAction',
-		// 	data:{"ma_name":$("#ma_name").val(),"ma_pwd":$("#password").val()},
-		// 	success:function(data){
-		// 		if(data==1){
-		// 			window.location=("PetAction_go_index");
-		// 		}else{
-		// 			alert("登录名或密码错误!");
-		// 		}
-		// 	}
-		//  })
+		$.ajax({
+			type:'post',
+			url:'/login.action',
+			data:$("#user").serialize(),
+			success:function(data){
+				alert("回来了");
+			}
+		 })
 	})
 	
 	
@@ -48,7 +44,7 @@ $(function(){
           <div class="login_name">
                <p>登录后台</p>
           </div>
-          <form method="post">
+          <form method="post" id="user">
               <input name="ma_name" id="ma_name" type="text"  placeholder="用户名" >
               <span id="password_text"  onclick="this.style.display='none';document.getElementById('password').style.display='block';document.getElementById('password').focus().select();" >密码</span>
 <input name="ma_pwd" type="password" id="password" style="display:none;" onblur="if(this.value==''){document.getElementById('password_text').style.display='block';this.style.display='none'};"/>

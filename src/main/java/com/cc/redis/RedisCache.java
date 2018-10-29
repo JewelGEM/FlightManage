@@ -12,8 +12,6 @@ public class RedisCache {
     }
 
     public void setJedisPool(JedisPool jedisPool) {
-
-        System.out.println("来了");
         this.jedisPool = jedisPool;
     }
 
