@@ -21,7 +21,7 @@ $(function(){
 			url:'/login.action',
 			data:$("#user").serialize(),
 			success:function(data){
-				alert("回来了");
+				alert("回来了嘛");
 			}
 		 })
 	})
