@@ -7,14 +7,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
- <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/style.css"/>
-        <link rel="stylesheet" href="../assets/css/ace.min.css" />
-        <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-		<script src="js/jquery-1.9.1.min.js"></script>  <script src="assets/dist/echarts.js"></script>
-        <script src="js/lrtk.js" type="text/javascript" ></script>	
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="js/jquery-1.9.1.min.js"></script>  <script src="assets/dist/echarts.js"></script>
+    <script src="js/lrtk.js" type="text/javascript" ></script>
 <title>航保资源统计</title>
 </head>
 
@@ -85,13 +85,13 @@
 </body>
 </html>
 <script>
-//初始化宽度、高度  
+
  $(".widget-box").height($(window).height()); 
  $(".Ads_list").width($(window).width()-220);
   //当文档窗口发生改变时 触发  
     $(window).resize(function(){
 	$(".widget-box").height($(window).height());
-	 $(".Ads_list").width($(window).width()-220);
+	 $(".Ads_list").width($(window).width//初始化宽度、高度  ()-220);
 	});
 	$(function() { 
 	$("#advertising").fix({

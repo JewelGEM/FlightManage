@@ -1,5 +1,6 @@
 package com.cc.pojo;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -14,6 +15,8 @@ public class FCollection implements Serializable{
 	private Integer id; 	//id
 	private String name; 	//API名称
 	private String Url; 	//Url
+	private String updateTime;  //更新日期
+	private int state;  //当前状态
 	/**
 	 * @Description: TODO(无参构造方法) 
 	 */ 
@@ -24,12 +27,21 @@ public class FCollection implements Serializable{
 	 * @param id	id
 	 * @param name	API名称
 	 * @param Url	Url
-	 */ 
+	 */
 	public FCollection(Integer id,String name,String Url){
 		this.id=id;
 		this.name=name;
 		this.Url=Url;
 	}
+
+	public FCollection(Integer id, String name, String url, String updateTime, int state) {
+		this.id = id;
+		this.name = name;
+		Url = url;
+		this.updateTime = updateTime;
+		this.state = state;
+	}
+
 	/**
 	 * @Title:setId 
 	 * @Description: TODO(设置Id	id)
@@ -78,12 +90,36 @@ public class FCollection implements Serializable{
 	public String getUrl(){
 		return Url;
 	}
+
+	public String getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	/**
 	 * @Title:toString 
 	 * @Description: TODO(toString)
-	 */ 
-	public String toString() { 
-		return "FCollection[id=" + id + ",name=" + name + ",Url=" + Url + "]";
+	 */
+	@Override
+	public String toString() {
+		return "FCollection{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", Url='" + Url + '\'' +
+				", updateTime='" + updateTime + '\'' +
+				", state=" + state +
+				'}';
 	}
 }
 

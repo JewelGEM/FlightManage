@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @RequestMapping("/login.action")
-    public String login(String username,String password){
+    public String login(String username, String password) {
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token=new UsernamePasswordToken(username,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
-        }catch (AuthenticationException ae){
+        } catch (AuthenticationException ae) {
             System.out.println("失败");
             return "/login.jsp";
         }
