@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.dao.FAircraftBasicDataDao">
+
+    <!--查询所有航班动态信息-->
+    <select id="getAllFAircraftBasicData" resultMap="FAircraftBasicDataResult">
+       SELECT * FROM f_flight_record AS f, f_aircraft_basic_data AS ab WHERE f.id = ab.id;
+    </select>
+    <resultMap type="com.cc.pojo.FAircraftBasicData" id="FAircraftBasicDataResult">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="no" column="no"/>
+        <result property="model" column="model"/>
+        <result property="company" column="company"/>
+        <result property="attribute" column="attribute"/>
+        <result property="twoCode" column="two_code"/>
+        <result property="wingspan" column="wingspan"/>
+        <result property="length" column="length"/>
+        <result property="height" column="height"/>
+        <result property="maxSeat" column="max_seat"/>
+        <result property="cargo" column="cargo"/>
+        <result property="takeoffWeight" column="takeoff_weight"/>
+        <result property="maxRange" column="max_range"/>
+        <result property="maxFuel" column="max_fuel"/>
+        <result property="runway" column="runway"/>
+        <result property="aircraftType" column="aircraft_type"/>
+        <result property="isinit" column="isinit"/>
+        <result property="state" column="state"/>
+        <association property="fFlightRecord" javaType="com.cc.pojo.FFlightRecord">
+            <id property="id" column="id"/>
+            <result property="code" column="code"/>
+            <result property="doDate" column="do_date"/>
+            <result property="airCode" column="air_code"/>
+            <result property="flightNo" column="flight_no"/>
+            <result property="no" column="no"/>
+            <result property="nature" column="nature"/>
+            <result property="task" column="task"/>
+            <result property="attribute" column="attribute"/>
+            <result property="seat" column="seat"/>
+            <result property="gate" column="gate"/>
+            <result property="luggageTurntable" column="luggage_turntable"/>
+            <result property="relationId" column="relation_id"/>
+            <result property="airlineId" column="airline_id"/>
+            <result property="airlineCompany" column="airline_company"/>
+            <result property="flightMission" column="flight_mission"/>
+            <result property="flightAgent" column="flight_agent"/>
+            <result property="airportStart" column="airport_start"/>
+            <result property="airportEnd" column="airport_end"/>
+            <result property="airportEndSpare" column="airport_end_spare"/>
+            <result property="adultNum" column="adult_num"/>
+            <result property="childNum" column="child_num"/>
+            <result property="babyNum" column="baby_num"/>
+            <result property="luggageNum" column="luggage_num"/>
+            <result property="cargoWeight" column="cargo_weight"/>
+            <result property="planTakeTime" column="plan_take_time"/>
+            <result property="planLandTime" column="plan_land_time"/>
+            <result property="realTakeTime" column="real_take_time"/>
+            <result property="realLandTime" column="real_land_time"/>
+            <result property="blockTime" column="block_time"/>
+            <result property="removeTime" column="remove_time"/>
+            <result property="delayRemark" column="delay_remark"/>
+            <result property="delayTime" column="delay_time"/>
+            <result property="terminal" column="terminal"/>
+            <result property="doorOpenTime" column="door_open_time"/>
+            <result property="doorCloseTime" column="door_close_time"/>
+            <result property="cargodoorOpenTime" column="cargodoor_open_time"/>
+            <result property="cargodoorCloseTime" column="cargodoor_close_time"/>
+            <result property="aircraftPort" column="aircraft_port"/>
+        </association>
+    </resultMap>
+
+
+    <!--根据id查询航班动态信息-->
+    <select id="getFAircraftBasicDataById" parameterType="Integer" resultMap="FAircraftBasicDataResult">
+       SELECT * FROM f_flight_record AS f, f_aircraft_basic_data AS ab WHERE f.id = ab.id AND ab.id = #{id};
+    </select>
+
+    <!--根据条件查询航班动态信息-->
+    <select id="getSomeFAircraftBasicDataBySelect" parameterType="Map" resultMap="FAircraftBasicDataResult">
+       SELECT * FROM f_flight_record AS f, f_aircraft_basic_data AS ab WHERE f.id = ab.id
+       <if test="flightNo!=''">
+           AND f.flight_no = #{flightNo}
+       </if>
+        <if test="no!=''">
+           AND f.no = #{no}
+       </if>
+        <if test="doDate!=''">
+           AND f.do_date = #{doDate}
+       </if>
+        <if test="isinit!='所有'">
+           AND ab.isinit = #{isinit}
+       </if>
+        <if test="aircraftPort!='所有'">
+           AND f.aircraft_port = #{aircraftPort}
+       </if>
+        <if test="airlineCompany!='航空公司'">
+           AND f.airline_company = #{airlineCompany}
+       </if>
+        <if test="nature!='所有'">
+           AND f.nature = #{nature}
+       </if>
+        <if test="state!='所有'">
+           AND ab.state = #{state}
+       </if>
+    </select>
+
+    <!--查询-->
+    <!--<select id="getAllFAircraftBasicData" resultMap="FAircraftBasicDataResult">
+         SELECT id,no,model,two_code FROM f_aircraft_basic_data
+    </select>
+    <resultMap id="FAircraftBasicDataResult" type="com.cc.pojo.FAircraftBasicData">
+        <id property="id" column="id"/>
+        <result property="no" column="no"/>
+        <result property="model" column="model"/>
+        <result property="twoCode" column="two_code"/>
+    </resultMap>-->
+
+    <!--根据id修改FFlightRecord对象-->
+    <update id="updateFFlightRecordById" parameterType="Map">
+        UPDATE f_flight_record
+        SET
+        <if test="adultNum!=null">
+            adult_num=#{adultNum},
+        </if>
+        <if test="childNum!=null">
+            child_num=#{childNum},
+        </if>
+        <if test="babyNum!=null">
+            baby_num=#{babyNum},
+        </if>
+        <if test="luggageNum!=null">
+            luggage_num=#{luggageNum},
+        </if>
+        <if test="cargoWeight!=null">
+            cargo_weight=#{cargoWeight},
+        </if>
+        seat=#{seat},gate=#{gate},luggage_turntable=#{luggageTurntable},airport_start=#{airportStart},airport_end_spare=#{airportEndSpare},relation_id=#{relationId},terminal=#{terminal},flight_agent=#{flightAgent},delay_remark=#{delayRemark}
+        WHERE id=#{id}
+    </update>
+
+    <!--根据id修改FAircraftBasicData对象-->
+    <update id="updateFAircraftBasicDataById" parameterType="Map">
+        UPDATE f_aircraft_basic_data
+        SET state=#{state},isinit=#{isinit}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

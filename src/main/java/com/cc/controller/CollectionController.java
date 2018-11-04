@@ -18,8 +18,10 @@ public class CollectionController {
     @Autowired
     private FCollectionService fCollectionService;
 
+    /**
+     * 查询所有接口
+     */
     @RequestMapping("/getAllCollection.action")
-    //查询所有接口
     public String getAllCollection(HttpServletResponse resp) {
         List<FCollection> fCollectionList = fCollectionService.getAllCollection();
         String fCollectionListJson = JSONArray.toJSONString(fCollectionList);

@@ -49,6 +49,7 @@ public class FFlightRecord implements Serializable{
 	private String doorCloseTime; 	//关舱门时间
 	private String cargodoorOpenTime; 	//开货舱门时间
 	private String cargodoorCloseTime; 	//关货舱门时间
+	private String aircraftPort;  //进/出港
 	/**
 	 * @Description: TODO(无参构造方法) 
 	 */ 
@@ -94,47 +95,50 @@ public class FFlightRecord implements Serializable{
 	 * @param doorCloseTime	关舱门时间
 	 * @param cargodoorOpenTime	开货舱门时间
 	 * @param cargodoorCloseTime	关货舱门时间
-	 */ 
-	public FFlightRecord(Integer id,Integer code,String doDate,String airCode,String flightNo,String no,String nature,String task,String attribute,String seat,String gate,String luggageTurntable,Integer relationId,Integer airlineId,String airlineCompany,String flightMission,String flightAgent,String airportStart,String airportEnd,String airportEndSpare,Integer adultNum,Integer childNum,Integer babyNum,Integer luggageNum,double cargoWeight,String planTakeTime,String planLandTime,String realTakeTime,String realLandTime,String blockTime,String removeTime,String delayRemark,Integer delayTime,String terminal,String doorOpenTime,String doorCloseTime,String cargodoorOpenTime,String cargodoorCloseTime){
-		this.id=id;
-		this.code=code;
-		this.doDate=doDate;
-		this.airCode=airCode;
-		this.flightNo=flightNo;
-		this.no=no;
-		this.nature=nature;
-		this.task=task;
-		this.attribute=attribute;
-		this.seat=seat;
-		this.gate=gate;
-		this.luggageTurntable=luggageTurntable;
-		this.relationId=relationId;
-		this.airlineId=airlineId;
-		this.airlineCompany=airlineCompany;
-		this.flightMission=flightMission;
-		this.flightAgent=flightAgent;
-		this.airportStart=airportStart;
-		this.airportEnd=airportEnd;
-		this.airportEndSpare=airportEndSpare;
-		this.adultNum=adultNum;
-		this.childNum=childNum;
-		this.babyNum=babyNum;
-		this.luggageNum=luggageNum;
-		this.cargoWeight=cargoWeight;
-		this.planTakeTime=planTakeTime;
-		this.planLandTime=planLandTime;
-		this.realTakeTime=realTakeTime;
-		this.realLandTime=realLandTime;
-		this.blockTime=blockTime;
-		this.removeTime=removeTime;
-		this.delayRemark=delayRemark;
-		this.delayTime=delayTime;
-		this.terminal=terminal;
-		this.doorOpenTime=doorOpenTime;
-		this.doorCloseTime=doorCloseTime;
-		this.cargodoorOpenTime=cargodoorOpenTime;
-		this.cargodoorCloseTime=cargodoorCloseTime;
+	 * @param aircraftPort   进/出港
+	 */
+	public FFlightRecord(Integer id, Integer code, String doDate, String airCode, String flightNo, String no, String nature, String task, String attribute, String seat, String gate, String luggageTurntable, Integer relationId, Integer airlineId, String airlineCompany, String flightMission, String flightAgent, String airportStart, String airportEnd, String airportEndSpare, Integer adultNum, Integer childNum, Integer babyNum, Integer luggageNum, double cargoWeight, String planTakeTime, String planLandTime, String realTakeTime, String realLandTime, String blockTime, String removeTime, String delayRemark, Integer delayTime, String terminal, String doorOpenTime, String doorCloseTime, String cargodoorOpenTime, String cargodoorCloseTime, String aircraftPort) {
+		this.id = id;
+		this.code = code;
+		this.doDate = doDate;
+		this.airCode = airCode;
+		this.flightNo = flightNo;
+		this.no = no;
+		this.nature = nature;
+		this.task = task;
+		this.attribute = attribute;
+		this.seat = seat;
+		this.gate = gate;
+		this.luggageTurntable = luggageTurntable;
+		this.relationId = relationId;
+		this.airlineId = airlineId;
+		this.airlineCompany = airlineCompany;
+		this.flightMission = flightMission;
+		this.flightAgent = flightAgent;
+		this.airportStart = airportStart;
+		this.airportEnd = airportEnd;
+		this.airportEndSpare = airportEndSpare;
+		this.adultNum = adultNum;
+		this.childNum = childNum;
+		this.babyNum = babyNum;
+		this.luggageNum = luggageNum;
+		this.cargoWeight = cargoWeight;
+		this.planTakeTime = planTakeTime;
+		this.planLandTime = planLandTime;
+		this.realTakeTime = realTakeTime;
+		this.realLandTime = realLandTime;
+		this.blockTime = blockTime;
+		this.removeTime = removeTime;
+		this.delayRemark = delayRemark;
+		this.delayTime = delayTime;
+		this.terminal = terminal;
+		this.doorOpenTime = doorOpenTime;
+		this.doorCloseTime = doorCloseTime;
+		this.cargodoorOpenTime = cargodoorOpenTime;
+		this.cargodoorCloseTime = cargodoorCloseTime;
+		this.aircraftPort = aircraftPort;
 	}
+
 	/**
 	 * @Title:setId 
 	 * @Description: TODO(设置Id	id)
@@ -743,24 +747,63 @@ public class FFlightRecord implements Serializable{
 	public String getCargodoorCloseTime(){
 		return cargodoorCloseTime;
 	}
+
+	public String getAircraftPort() {
+		return aircraftPort;
+	}
+
+	public void setAircraftPort(String aircraftPort) {
+		this.aircraftPort = aircraftPort;
+	}
+
 	/**
 	 * @Title:toString 
 	 * @Description: TODO(toString)
-	 */ 
-	public String toString() { 
-		return "FFlightRecord[id=" + id + ",code=" + code + ",doDate=" + doDate + ","+
-		"airCode=" + airCode + ",flightNo=" + flightNo + ",no=" + no + ","+
-		"nature=" + nature + ",task=" + task + ",attribute=" + attribute + ","+
-		"seat=" + seat + ",gate=" + gate + ",luggageTurntable=" + luggageTurntable + ","+
-		"relationId=" + relationId + ",airlineId=" + airlineId + ",airlineCompany=" + airlineCompany + ","+
-		"flightMission=" + flightMission + ",flightAgent=" + flightAgent + ",airportStart=" + airportStart + ","+
-		"airportEnd=" + airportEnd + ",airportEndSpare=" + airportEndSpare + ",adultNum=" + adultNum + ","+
-		"childNum=" + childNum + ",babyNum=" + babyNum + ",luggageNum=" + luggageNum + ","+
-		"cargoWeight=" + cargoWeight + ",planTakeTime=" + planTakeTime + ",planLandTime=" + planLandTime + ","+
-		"realTakeTime=" + realTakeTime + ",realLandTime=" + realLandTime + ",blockTime=" + blockTime + ","+
-		"removeTime=" + removeTime + ",delayRemark=" + delayRemark + ",delayTime=" + delayTime + ","+
-		"terminal=" + terminal + ",doorOpenTime=" + doorOpenTime + ",doorCloseTime=" + doorCloseTime + ","+
-		"cargodoorOpenTime=" + cargodoorOpenTime + ",cargodoorCloseTime=" + cargodoorCloseTime + "]";
+	 */
+
+	@Override
+	public String toString() {
+		return "FFlightRecord{" +
+				"id=" + id +
+				", code=" + code +
+				", doDate='" + doDate + '\'' +
+				", airCode='" + airCode + '\'' +
+				", flightNo='" + flightNo + '\'' +
+				", no='" + no + '\'' +
+				", nature='" + nature + '\'' +
+				", task='" + task + '\'' +
+				", attribute='" + attribute + '\'' +
+				", seat='" + seat + '\'' +
+				", gate='" + gate + '\'' +
+				", luggageTurntable='" + luggageTurntable + '\'' +
+				", relationId=" + relationId +
+				", airlineId=" + airlineId +
+				", airlineCompany='" + airlineCompany + '\'' +
+				", flightMission='" + flightMission + '\'' +
+				", flightAgent='" + flightAgent + '\'' +
+				", airportStart='" + airportStart + '\'' +
+				", airportEnd='" + airportEnd + '\'' +
+				", airportEndSpare='" + airportEndSpare + '\'' +
+				", adultNum=" + adultNum +
+				", childNum=" + childNum +
+				", babyNum=" + babyNum +
+				", luggageNum=" + luggageNum +
+				", cargoWeight=" + cargoWeight +
+				", planTakeTime='" + planTakeTime + '\'' +
+				", planLandTime='" + planLandTime + '\'' +
+				", realTakeTime='" + realTakeTime + '\'' +
+				", realLandTime='" + realLandTime + '\'' +
+				", blockTime='" + blockTime + '\'' +
+				", removeTime='" + removeTime + '\'' +
+				", delayRemark='" + delayRemark + '\'' +
+				", delayTime=" + delayTime +
+				", terminal='" + terminal + '\'' +
+				", doorOpenTime='" + doorOpenTime + '\'' +
+				", doorCloseTime='" + doorCloseTime + '\'' +
+				", cargodoorOpenTime='" + cargodoorOpenTime + '\'' +
+				", cargodoorCloseTime='" + cargodoorCloseTime + '\'' +
+				", aircraftPort='" + aircraftPort + '\'' +
+				'}';
 	}
 }
 
